@@ -11,6 +11,21 @@ jobs:
   lint-and-test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: todo_user
+          POSTGRES_PASSWORD: todo_password
+          POSTGRES_DB: todo_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -38,6 +53,12 @@ jobs:
           flake8 src tests
 
       - name: Run tests with Pytest
+        env:
+          PGHOST: localhost
+          PGPORT: 5432
+          PGUSER: todo_user
+          PGPASSWORD: todo_password
+          PGDATABASE: todo_db
         run: |
           source venv/bin/activate
           pytest --maxfail=1 --disable-warnings -q --cov=src
