@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "todo-cli"
+version = "0.1.0"
+description = "Prosty CLI To-Do zarządzany przez PostgreSQL"
+readme = "README.md"
+keywords = ["cli", "todo", "postgresql"]
+license = "MIT"
+classifiers = [
+"Programming Language :: Python :: 3",
+"Environment :: Console",
+]
+dependencies = [
+"click==8.2.0",
+"psycopg2-binary==2.9.10",
+"toml==0.10.2",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Mejteoo/todo-cli"
+
+[project.optional-dependencies]
+test = [
+"pytest>=8.0",
+"pytest-cov>=6.0",
+"flake8>=7.0",
+"black>=25.0",
+]
+
+[project.scripts]
+todo = "cli:cli"
+
+[tool.setuptools]
+packages = { find = { where = ["src"] } }

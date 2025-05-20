@@ -1,0 +1,9 @@
+click==8.2.0
+psycopg2-binary==2.9.10
+toml==0.10.2
+
+[test]
+pytest>=8.0
+pytest-cov>=6.0
+flake8>=7.0
+black>=25.0

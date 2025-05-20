@@ -1,0 +1,3 @@
+db: postgresql
+username: todo_user
+password: secret
