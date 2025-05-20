@@ -4,23 +4,28 @@ from alembic import context
 import sys
 import os
 
+# Add src/ to path so we can import config
 sys.path.insert(
     0,
     os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")),
 )
 from config import load_config
 
-
+# Alembic config
 config = context.config
 fileConfig(config.config_file_name)
 
-
+# Load DSN from config and convert to SQLAlchemy URL
 cfg = load_config()
-config.set_main_option(
-    "sqlalchemy.url",
-    cfg["database"]["dsn"],
+# DSN like: "dbname=todo_db user=todo_user password=secret host=localhost port=5432"
+parts = dict(item.split("=") for item in cfg["database"]["dsn"].split())
+sqlalchemy_url = (
+    f"postgresql+psycopg2://{parts['user']}:{parts['password']}@"
+    f"{parts['host']}:{parts['port']}/{parts['dbname']}"
 )
+config.set_main_option("sqlalchemy.url", sqlalchemy_url)
 
+# Manual migrations: no metadata for autogenerate
 target_metadata = None
 
 
@@ -28,9 +33,8 @@ def run_migrations_offline():
     """
     Run migrations in 'offline' mode: generate SQL scripts without DB connection.
     """
-    url = cfg["database"]["dsn"]
     context.configure(
-        url=url,
+        url=sqlalchemy_url,
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
