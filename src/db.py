@@ -5,9 +5,11 @@ from config import load_config
 _config = load_config()
 DSN = _config["database"]["dsn"]
 
+
 def get_conn():
     """Zwraca połączenie do bazy PostgreSQL z RealDictCursor."""
     return psycopg2.connect(DSN, cursor_factory=RealDictCursor)
+
 
 def init_db():
     """Tworzy tabelę task oraz indeks, jeśli nie istnieją."""
@@ -37,6 +39,7 @@ def add_task(description: str, due_date: str | None, priority: str):
         cur.execute(insert_sql, (description, due_date, priority))
         conn.commit()
 
+
 def list_tasks(
     show_all: bool = False, priority: str | None = None, due_before: str | None = None
 ) -> list[dict]:
@@ -58,6 +61,7 @@ def list_tasks(
         cur.execute(sql, params)
         return cur.fetchall()
 
+
 def mark_done(task_id: int):
     """Oznacza zadanie jako wykonane."""
     update_sql = "UPDATE task SET is_done = TRUE WHERE id = %s;"
@@ -67,6 +71,7 @@ def mark_done(task_id: int):
             raise ValueError(f"Task with id={task_id} does not exist.")
         conn.commit()
 
+
 def delete_task(task_id: int):
     """Usuwa zadanie o podanym ID."""
     delete_sql = "DELETE FROM task WHERE id = %s;"
@@ -75,6 +80,7 @@ def delete_task(task_id: int):
         if cur.rowcount == 0:
             raise ValueError(f"Task with id={task_id} does not exist.")
         conn.commit()
+
 
 def reset_tasks():
     """Czyści wszystkie zadania i restartuje numerację ID."""
