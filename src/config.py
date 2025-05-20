@@ -17,6 +17,7 @@ DEFAULT_CONFIG = {
     "cli": {"default_priority": "medium"},
 }
 
+
 def load_config():
     if not CONFIG_PATH.exists():
         return DEFAULT_CONFIG
