@@ -41,8 +41,8 @@ Pozwala na dodawanie, listowanie, oznaczanie jako wykonane oraz usuwanie zadań,
 1. Sklonuj repozytorium i przejdź do katalogu:
 
     ```bash
-    git clone https://github.com/username/todo-cli.git
-    cd todo-cli
+    git clone https://github.com/Mejteoo/todocli.git
+    cd todocli
     ```
 
 2. Utwórz i aktywuj wirtualne środowisko:

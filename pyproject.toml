@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Mejteoo/todo-cli"
+Homepage = "https://github.com/Mejteoo/todocli"
 
 [project.optional-dependencies]
 test = [
