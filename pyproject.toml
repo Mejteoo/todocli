@@ -10,17 +10,17 @@ readme = "README.md"
 keywords = ["cli", "todo", "postgresql"]
 license = "MIT"
 classifiers = [
-"Programming Language :: Python :: 3",
-"Environment :: Console",
+  "Programming Language :: Python :: 3",
+  "Environment :: Console",
 ]
 dependencies = [
-"click==8.2.0",
-"psycopg2-binary==2.9.10",
-"toml==0.10.2",
+  "click==8.2.0",
+  "psycopg2-binary==2.9.10",
+  "toml==0.10.2",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/Mejteoo/todo-cli"
+Homepage = "https://github.com/Mejteoo/todo-cli"
 
 [project.optional-dependencies]
 test = [
@@ -35,4 +35,5 @@ test = [
 todo = "cli:cli"
 
 [tool.setuptools]
-packages = { find = { where = ["src"] } }
+package-dir = {"" = "src"}
+py-modules = ["cli", "config", "db", "tasks"]

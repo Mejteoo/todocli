@@ -4,14 +4,40 @@ import argcomplete
 from config import load_config
 from db import init_db, add_task, list_tasks, mark_done, delete_task, reset_tasks
 
-# Load config
 _cfg = load_config()
 default_prio = _cfg["cli"]["default_priority"]
 
 
 @click.group()
+@click.version_option(version="0.1.0")
 def cli():
-    """To-Do CLI: zarządzaj swoimi zadaniami z terminala."""
+    """
+    Todo-CLI: Zarządzaj swoimi zadaniami z terminala.
+
+    Parametry globalne:
+      --due         Termin wykonania (YYYY-MM-DD).
+      --prio        Priorytet zadania: low, medium (domyślny z config), high
+
+    Filtrowanie w `todo list`:
+      --filter-prio <low|medium|high>   Pokaż tylko zadania o priorytecie.
+      --due-before <YYYY-MM-DD>         Pokaż zadania przed datą.
+      --all                             Pokaż także ukończone.
+
+    Komendy:
+      initdb   - inicjalizuje schemat bazy danych
+      add      - dodaje nowe zadanie
+      list     - wyświetla listę zadań
+      done     - oznacza zadanie jako wykonane
+      delete   - usuwa zadanie
+      reset    - kasuje wszystkie zadania i resetuje numerację
+
+    Przykłady:
+      todo initdb
+      todo add "Kup chleb" --due=2025-06-01 --prio=high
+      todo list --filter-prio=medium --due-before=2025-07-01
+      todo done 3
+      todo reset
+    """
     pass
 
 

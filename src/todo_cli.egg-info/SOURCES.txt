@@ -1,6 +1,10 @@
 LICENSE
 README.md
 pyproject.toml
+src/cli.py
+src/config.py
+src/db.py
+src/tasks.py
 src/todo_cli.egg-info/PKG-INFO
 src/todo_cli.egg-info/SOURCES.txt
 src/todo_cli.egg-info/dependency_links.txt
