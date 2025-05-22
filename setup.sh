@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
+#SKRYPT PRZETESTOWANY NA AKTUALNEJ FEDORZE
 # Przechodzimy do katalogu skryptu
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
