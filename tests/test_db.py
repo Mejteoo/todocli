@@ -12,7 +12,7 @@ from db import (
 
 @pytest.fixture(autouse=True)
 def clear_db():
-    # Cleaning db - test
+    init_db()
     conn = get_conn()
     with conn.cursor() as cur:
         cur.execute("TRUNCATE TABLE task RESTART IDENTITY;")
@@ -22,9 +22,7 @@ def clear_db():
 
 
 def test_init_and_reset():
-
     init_db()
-
     add_task("A", None, "low")
     reset_tasks()
     assert list_tasks(show_all=True) == []
