@@ -53,18 +53,7 @@ jobs:
         run: |
           source venv/bin/activate
           flake8 src tests
-
-      - name: Run Alembic migrations
-        env:
-          PGHOST: localhost
-          PGPORT: 5432
-          PGUSER: todo_user
-          PGPASSWORD: todo_password
-          PGDATABASE: todo_db
-        run: |
-          source venv/bin/activate
-          alembic upgrade head
-
+          
       - name: Run tests with Pytest
         env:
           PGHOST: localhost

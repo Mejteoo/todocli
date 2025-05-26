@@ -1,7 +1,6 @@
 click
 psycopg2-binary
 toml
-alembic
 black
 flake8
 pytest
