@@ -17,6 +17,7 @@ dependencies = [
   "click==8.2.0",
   "psycopg2-binary==2.9.10",
   "toml==0.10.2",
+  "argcomplete>=3.6.2"
 ]
 
 [project.urls]
