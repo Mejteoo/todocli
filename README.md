@@ -203,6 +203,7 @@ Ten projekt jest dostępny na licencji UNLICENSED. Zobacz też plik `LICENSE` po
 ---
 ## Koniec
 Aplikacja została stworzona jako projekt na uczelnie. Została tworzona i testowana na systemie `Fedora`.
+
 Została stworzona za pomocą dokumentancji m.in. Pythona, stackoverflow, wielu forum tematycznych jak i sztucznej inteligencji.
 
 
