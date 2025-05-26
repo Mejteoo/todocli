@@ -12,10 +12,10 @@
 3. [Instalacja](#instalacja)  
 4. [Konfiguracja](#konfiguracja)  
 5. [Użycie](#użycie)  
-6. [Komendy](#komendy)  
-7. [Testy](#testy)  
-8. [Migracje](#migracje)  
-9. [Licencja](#licencja)  
+6. [Komendy](#komendy)
+7. [Testy](#testy)
+8. [Licencja](#licencja)
+9. [Koniec](#Koniec)
 
 ---
 
@@ -30,16 +30,17 @@ Pozwala na dodawanie, listowanie, oznaczanie jako wykonane oraz usuwanie zadań,
 
 - Python ≥ 3.10  
 - PostgreSQL  
-- `click==8.2.0`  
-- `psycopg2-binary==2.9.10`  
-- `toml==0.10.2`  
+- Wszystkie paczki pythona z requirements.txt  
 
 ---
 
 ## Instalacja
 
-1. Sklonuj repozytorium i przejdź do katalogu:
+1. Zainstaluj narzędzia systemowe, sklonuj repozytorium i przejdź do katalogu:
 
+    ```bash
+    sudo dnf install -y git python3 python3-pip python3-virtualenv postgresql postgresql-server postgresql-contrib
+    ```
     ```bash
     git clone https://github.com/Mejteoo/todocli.git
     cd todocli
@@ -58,9 +59,20 @@ Pozwala na dodawanie, listowanie, oznaczanie jako wykonane oraz usuwanie zadań,
     pip install -e .
     ```
 
-4. Przygotuj bazę i schemat:
+4. Przygotuj bazę (postgresql) i schemat:
 
     ```bash
+    sudo postgresql-setup --initdb
+    ```
+    Ustaw w pliku konfiguracyjnym `pg_hba.conf` wartości na trust tak jak na screenie w .screeny/edytuj-iwpisz-trust.png
+
+   Stwórz użytkownika i bazę danych:
+   
+   <sup>Skorzystaj z użytkownika i bazy danych z przykładowego pliku `~/.todo/config.toml` </sup>
+    ```bash
+    sudo -u postgres psql -c "CREATE USER todo_user WITH PASSWORD 'secret';"
+    sudo -u postgres psql -c "CREATE DATABASE todo_db OWNER todo_user;"
+
     todo initdb
     ```
 
@@ -82,6 +94,21 @@ dsn = "dbname=todo_db user=todo_user password=secret host=localhost port=5432"
 
 [cli]
 default_priority = "medium"
+```
+jeśli tego pliku nie ma to utwórz go w tamtej ścieżce.
+```bash
+mkdir -p ~/.todo
+cat > ~/.todo/config.toml <<EOF
+[database]
+dsn = "dbname=todo_db user=todo_user password=secret host=localhost port=5432"
+
+[cli]
+default_priority = "medium"
+EOF
+```
+Aby autouzupełnianie działało należy wpisać te komendy, które dodają go do powłoki bash:
+```bash
+echo 'eval "$(register-python-argcomplete todo)"' >> ~/.bashrc && source ~/.bashrc
 ```
 
 ---
@@ -130,27 +157,32 @@ todo reset
 
 Uruchom testy z `pytest`:
 
+<sub>
+Przed uruchomieniem testów pobierz narzędzia testowe:
+</sub>
+    
 ```bash
-pytest --cov=src
+    pip install -e .["test"]
 ```
 
----
-
-## Migracje
-
-Migracje zarządzane są przy pomocy Alembic:
-
+Aby testy zadziałały użyj:
 ```bash
-# Zarejestruj aktualny stan bazy jako „head”
-alembic stamp head
+    pytest --cov=src
 
-# Gdy zmieniasz schemat:
-alembic revision -m "opis zmiany"
-alembic upgrade head
 ```
-
 ---
 
 ## Licencja
 
 Ten projekt jest dostępny na licencji MIT. Zobacz też plik `LICENSE` po pełny tekst.
+
+---
+## Koniec
+lorum ipsum
+test
+
+
+
+---
+
+
