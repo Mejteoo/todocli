@@ -111,6 +111,30 @@ Aby autouzupełnianie działało należy wpisać te komendy, które dodają go d
 echo 'eval "$(register-python-argcomplete todo)"' >> ~/.bashrc && source ~/.bashrc
 ```
 
+
+Po zamknięciu terminala będzie wymagane ponowna aktywacja środowiska venv
+```bash
+cd ~/ścieżka/do/todocli
+source venv/bin/activate
+todo
+todo --help
+```
+Aby korzystać z programu bez potrzeby ponownych aktywacji dopisz do `~/.bashrc`:
+```bash
+cd ~/ścieżka/do/todocli && source venv/bin/activate
+```
+Możliwa jest też opcja instalacji globalnej - pozwoli to na używanie aplikacji `todo` z każdego miejsca, aby tego dokonać zainstaluj pakiet w trybie user:
+```bash
+pip install --user -e .
+source ~/.bashrc
+todo --help
+```
+
+W przypadku wystąpienia problemów upewnij się czy `echo $PATH` zawiera ~/.local/bin. Jeśli nie to dodaj a następnie uruchom komende `source ~/.bashrc`:
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
 ---
 
 ## Użycie
@@ -178,11 +202,9 @@ Ten projekt jest dostępny na licencji UNLICENSED. Zobacz też plik `LICENSE` po
 
 ---
 ## Koniec
-lorum ipsum
-test
+Aplikacja została stworzona jako projekt na uczelnie. Została tworzona i testowana na systemie `Fedora`.
+Została stworzona za pomocą dokumentancji m.in. Pythona, stackoverflow, wielu forum tematycznych jak i sztucznej inteligencji.
 
 
 
 ---
-
-
