@@ -162,7 +162,7 @@ Przed uruchomieniem testów pobierz narzędzia testowe:
 </sub>
     
 ```bash
-    pip install -e .["test"]
+    pip install -e '.[test]'
 ```
 
 Aby testy zadziałały użyj:
@@ -174,7 +174,7 @@ Aby testy zadziałały użyj:
 
 ## Licencja
 
-Ten projekt jest dostępny na licencji MIT. Zobacz też plik `LICENSE` po pełny tekst.
+Ten projekt jest dostępny na licencji UNLICENSED. Zobacz też plik `LICENSE` po pełny tekst.
 
 ---
 ## Koniec
