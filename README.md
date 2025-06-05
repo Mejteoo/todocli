@@ -35,7 +35,7 @@ Pozwala na dodawanie, listowanie, oznaczanie jako wykonane oraz usuwanie zadań,
 ---
 
 ## Instalacja
-
+    Przed instalacją koniecznie przeczytaj całe README!
 1. Zainstaluj narzędzia systemowe, sklonuj repozytorium i przejdź do katalogu:
 
     ```bash
